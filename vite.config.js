@@ -17,6 +17,7 @@ export default defineConfig({
       config: "/src/config",
       helpers: "/src/helpers",
       routes: "/src/routes",
+      Auth: "/src/Auth",
     }
   }  
 })

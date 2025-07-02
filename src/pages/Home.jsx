@@ -1,4 +1,5 @@
 import Logo from "assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 function Home(){
 
@@ -23,8 +24,12 @@ function Home(){
                     </div>
 
                     <div>
-                        <button className="btn btn-primary rounded-md px-5 py-2 text-xl">Register</button>
-                        <button className="btn btn-warning mx-3 rounded-md px-5 py-2 text-xl">Login</button>
+                        <button className="btn btn-primary rounded-md px-5 py-2 text-xl">
+                            <Link to={"/signup"}>Register</Link>
+                        </button>
+                        <button className="btn btn-warning mx-3 rounded-md px-5 py-2 text-xl">
+                              <Link to={"/login"}>Login</Link>
+                        </button>
                     </div>
 
                 </div>
