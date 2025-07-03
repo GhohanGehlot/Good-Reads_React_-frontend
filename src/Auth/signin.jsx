@@ -1,6 +1,45 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signin } from "Redux/slices/authSlice";
 
 export default function SignIn(){
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [signinDetails, setSigninDetails] = useState({
+        email: '',
+        password: '',
+    })
+
+         function resetForm(){
+            setSigninDetails({
+            email: '',
+            password: '',
+        
+        })
+        }
+
+    function handleFormChange(e){
+        const {name , value } = e.target;
+        setSigninDetails({
+            ...signinDetails,
+            [ name]: value
+        });
+    }
+
+  async  function onSubmit(e){
+        e.preventDefault();
+        const response = await dispatch(signin(signinDetails))
+        if(response?.payload?.data){
+            navigate("/");
+        }
+        resetForm();
+    }
+
+
+
 
     return(
         <div className="h-[100vh] flex flex-col items-center justify-center">
@@ -19,7 +58,7 @@ export default function SignIn(){
             </div>
 
             <div className="w-full" >
-                <form className="flex flex-col justify-center items-center w-3/4 mx-auto" autoComplete="off">
+                <form onSubmit={onSubmit} className="flex flex-col justify-center items-center w-3/4 mx-auto" autoComplete="off">
                     
                      <div className="my-5 w-1/3 ">
                         <input 
@@ -27,6 +66,9 @@ export default function SignIn(){
                           type="email"
                           placeholder=" email"
                           className="px-8 py-3 w-full "
+                          value={signinDetails.email}
+                          onChange={handleFormChange}
+                          name="email"
                            />
                     </div>
 
@@ -36,6 +78,9 @@ export default function SignIn(){
                           type="password"
                           placeholder="password"
                           className="px-8 py-3 w-full "
+                          value={signinDetails.password}
+                          onChange={handleFormChange}
+                          name="password"
                            />
                     </div>
 

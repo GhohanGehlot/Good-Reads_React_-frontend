@@ -28,7 +28,7 @@ function Home(){
                             <Link to={"/signup"}>Register</Link>
                         </button>
                         <button className="btn btn-warning mx-3 rounded-md px-5 py-2 text-xl">
-                              <Link to={"/login"}>Login</Link>
+                              <Link to={"/signin"}>Login</Link>
                         </button>
                     </div>
 
